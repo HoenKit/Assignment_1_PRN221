@@ -39,12 +39,18 @@ namespace SalesWPFApp
             //Config Repository
             services.AddSingleton<IMemberRepository, MemberRepository>();
             services.AddSingleton<IOrderRepository, OrderRepository>();
+            services.AddSingleton<ICategoryRepository, CategoryRepository>();
+            services.AddSingleton<IProductRepository, ProductRepository>();
+            services.AddSingleton<IOrderDetailRepository, OrderDetailRepository>();
             //Config Window
             services.AddTransient<LoginWindow>();
             services.AddTransient<MemberManagementWindow>();
             services.AddTransient<ManagementWindow>();
             services.AddTransient<MemberProfile>();
             services.AddTransient<OrderHistoryWindow>();
+            services.AddTransient<CategoryManagementWindow>();
+            services.AddTransient<ProductManagementWindow>();
+            services.AddTransient<OrderManagementWindow>();
         }
 
         private void OnStartup(object sender, StartupEventArgs e)

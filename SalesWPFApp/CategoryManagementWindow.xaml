@@ -1,0 +1,52 @@
+﻿<Window x:Class="SalesWPFApp.CategoryManagementWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SalesWPFApp"
+        mc:Ignorable="d"
+        Title="CategoryManagementWindow" Height="450" Width="800">
+    <Grid Background ="LightCyan">
+            <DockPanel VerticalAlignment="Top" Margin="10">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="4*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <!--StackPanel for Label and TextBox controls-->
+                    <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Width="400"
+                  DataContext="{Binding ElementName=lvCategory, Path=SelectedItem}">
+                        <Label Name="lbTitle" HorizontalAlignment="Center" FontWeight="DemiBold" FontSize="20" Content="Category Information" />
+
+                        <Label Name="lbCategoryId" Content="Category Id" />
+                        <TextBox Name="txtCategoryId" HorizontalAlignment="Stretch" Background="LightGray" IsReadOnly="True" Height="25" Text="{Binding Path=CategoryId, Mode=OneWay}" />
+
+                        <Label Name="lbName" Content="Name" />
+                        <TextBox Name="txtName" HorizontalAlignment="Stretch" Height="25" Text="{Binding Path=Name, Mode=OneWay}" />
+
+                    </StackPanel>
+                    <!--StackPanel for Button controls-->
+                    <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
+                        <Button x:Name="btnLoad" Margin="10" Width="80" Content="Load" Click="btnLoad_Click"/>
+                        <Button x:Name="btnInsert" Margin="10" Width="80" Content="Insert" Click="btnInsert_Click"/>
+                        <Button x:Name="btnUpdate" Margin="10" Width="80" Content="Update" Click="btnUpdate_Click"/>
+                        <Button x:Name="btnDelete" Margin="10" Width="80" Content="Delete" Click="btnDelete_Click"/>
+                        <Button x:Name="btnClear" Margin="10" Width="80" Content="Clear" Click="btnClear_Click"/>
+                    </StackPanel>
+                    <!-- ListView control-->
+                    <ListView Grid.Row="2" Name="lvCategory" Width="Auto" Height="Auto">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="Category ID" Width="100" DisplayMemberBinding="{Binding Path=CategoryId}"/>
+                                <GridViewColumn Header="Name" Width="200" DisplayMemberBinding="{Binding Path=Name}"/>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                    <!-- Button control-->
+                    <Button Grid.Row="3" x:Name="btnClose" Margin="10" HorizontalAlignment="Center" VerticalAlignment="Bottom" Width="80" Content="Close" Click="btnClose_Click" />
+                </Grid>
+            </DockPanel>
+        </Grid>
+</Window>

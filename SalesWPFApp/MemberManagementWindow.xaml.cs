@@ -118,7 +118,8 @@ namespace SalesWPFApp
             {
                 Member member = new Member
                 {
-                    MemberId = int.Parse(txtMemberId.Text)
+                    MemberId = int.Parse(txtMemberId.Text),
+                    Email = txtEmail.Text,
                 };
                 _memberRepository.DeleteMember(member);
                 LoadMemberList();

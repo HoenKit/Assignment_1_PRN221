@@ -9,6 +9,11 @@ namespace Assignment1_PRN221_Library.IRepository
 {
     public interface IOrderRepository
     {
+        public void AddOrder(Order order);
+        public void UpdateOrder(Order order);
+        public void DeleteOrder(Order order);
+        public Order GetOrder(int id);
+        public IEnumerable<Order> GetAllOrders();
         public IEnumerable<Order> GetOrdersByMemberId(int memberId);
     }
 }

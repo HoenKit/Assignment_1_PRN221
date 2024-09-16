@@ -37,11 +37,19 @@ namespace SalesWPFApp
         }
         private void ProductButton_Click(object sender, RoutedEventArgs e)
         {
-
+            var productWindow = _serviceProvider.GetService<ProductManagementWindow>();
+            productWindow.Show();
         }
         private void OrderButton_Click(object sender, RoutedEventArgs e)
         {
+            var orderWindow = _serviceProvider.GetService<OrderManagementWindow>();
+            orderWindow.Show();
+        }
 
+        private void CategoryButton_Click (object sender, RoutedEventArgs e)
+        {
+            var categoryWindow = _serviceProvider.GetService<CategoryManagementWindow>();
+            categoryWindow.Show();
         }
         private void btnClose_Click(object sender, RoutedEventArgs e) => Close();
     }

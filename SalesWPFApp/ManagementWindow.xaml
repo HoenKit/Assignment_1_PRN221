@@ -12,6 +12,7 @@
 
             <Button Content="Member" Width="200" Click="MemberButton_Click" Margin="0,0,0,20"/>
             <Button Content="Product" Width="200" Click="ProductButton_Click" Margin="0,0,0,20"/>
+            <Button Content="Category" Width="200" Click="CategoryButton_Click" Margin="0,0,0,20"/>
             <Button Content="Order" Width="200" Click="OrderButton_Click" Margin="0,0,0,20"/>
             <Button Grid.Row="3" x:Name="btnClose" Margin="10" HorizontalAlignment="Center" VerticalAlignment="Bottom" Width="80" Content="Close" Click="btnClose_Click" />
         </StackPanel>
