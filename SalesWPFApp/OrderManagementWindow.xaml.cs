@@ -69,33 +69,6 @@ namespace SalesWPFApp
             }
         }
 
-        private void lvOrderDetails_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (lvOrderDetails.SelectedItem is OrderDetailDto selectedOrderDetail)
-            {
-                // Ensure that the ComboBox items are set properly
-                cmbMember.SelectedValue = selectedOrderDetail.MemberId;
-                cmbProduct.SelectedValue = selectedOrderDetail.ProductId;
-
-                // Optionally, you can force refresh
-                // Example:
-                cmbMember.SelectedItem = cmbMember.Items.Cast<Member>().FirstOrDefault(m => m.MemberId == selectedOrderDetail.MemberId);
-                cmbProduct.SelectedItem = cmbProduct.Items.Cast<Product>().FirstOrDefault(p => p.ProductId == selectedOrderDetail.ProductId);
-
-                // Update the other fields
-                txtOrderId.Text = selectedOrderDetail.OrderId.ToString();
-                txtOrderDetailId.Text = selectedOrderDetail.OrderDetailId.ToString();
-                txtUnitPrice.Text = selectedOrderDetail.UnitPrice.ToString();
-                txtQuantity.Text = selectedOrderDetail.Quantity.ToString();
-                txtDiscount.Text = selectedOrderDetail.Discount.ToString();
-                dpOrderDate.SelectedDate = selectedOrderDetail.OrderDate;
-                dpRequiredDate.SelectedDate = selectedOrderDetail.RequiredDate;
-                dpShippedDate.SelectedDate = selectedOrderDetail.ShippedDate;
-                txtFreight.Text = selectedOrderDetail.Freight?.ToString();
-            }
-        }
-
-
         private void btnInsert_Click(object sender, RoutedEventArgs e)
         {
             try

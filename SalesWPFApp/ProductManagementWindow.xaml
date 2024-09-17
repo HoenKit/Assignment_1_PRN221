@@ -5,67 +5,83 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SalesWPFApp"
         mc:Ignorable="d"
-        Title="ProductManagementWindow" Height="800" Width="900">
-    <Grid Background ="LightCyan">
-            <DockPanel VerticalAlignment="Top" Margin="10">
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="4*"/>
-                        <RowDefinition Height="*"/>
-                    </Grid.RowDefinitions>
-                    <!--StackPanel for Label and TextBox controls-->
-                    <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Width="400"
-              DataContext="{Binding ElementName=lvProduct, Path=SelectedItem}">
-                        <Label Name="lbTitle" HorizontalAlignment="Center" FontWeight="DemiBold" FontSize="20" Content="Product Information" />
+        Title="ProductManagementWindow" Height="800" Width="1000">
+    <Grid Background="LightCyan">
+        <DockPanel VerticalAlignment="Top" Margin="10">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="4*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
 
-                        <Label Name="lbProductId" Content="Product Id" />
-                        <TextBox Name="txtProductId" HorizontalAlignment="Stretch" Background="LightGray" IsReadOnly="True" Height="25" Text="{Binding Path=ProductId, Mode=OneWay}" />
+                <!-- StackPanel for Label and TextBox controls -->
+                <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Width="400" DataContext="{Binding ElementName=lvProduct, Path=SelectedItem}">
+                    <Label Name="lbTitle" HorizontalAlignment="Center" FontWeight="DemiBold" FontSize="20" Content="Product Information" />
 
-                        <!-- ComboBox for Category -->
-                        <Label Name="lbCategory" Content="Category" />
-                        <ComboBox Name="cmbCategory" HorizontalAlignment="Stretch" Height="25" 
-                          DisplayMemberPath="Name" 
-                          SelectedValuePath="CategoryId" 
+                    <Label Name="lbProductId" Content="Product Id" />
+                    <TextBox Name="txtProductId" HorizontalAlignment="Stretch" Background="LightGray" IsReadOnly="True" Height="25" Text="{Binding Path=ProductId, Mode=OneWay}" />
+
+                    <!-- ComboBox for Category -->
+                    <Label Name="lbCategory" Content="Category" />
+                    <ComboBox Name="cmbCategory" HorizontalAlignment="Stretch" Height="25"
+                          DisplayMemberPath="Name"
+                          SelectedValuePath="CategoryId"
                           SelectedValue="{Binding Path=CategoryId, Mode=OneWay}" />
-                        <Label Name="lbProductName" Content="Product Name" />
-                        <TextBox Name="txtProductName" HorizontalAlignment="Stretch" Height="25" Text="{Binding Path=ProductName, Mode=OneWay}" />
+                    <Label Name="lbProductName" Content="Product Name" />
+                    <TextBox Name="txtProductName" HorizontalAlignment="Stretch" Height="25" Text="{Binding Path=ProductName, Mode=OneWay}" />
 
-                        <Label Name="lbWeight" Content="Weight" />
-                        <TextBox Name="txtWeight" HorizontalAlignment="Stretch" Height="25" Text="{Binding Path=Weight, Mode=OneWay}" />
+                    <Label Name="lbWeight" Content="Weight" />
+                    <TextBox Name="txtWeight" HorizontalAlignment="Stretch" Height="25" Text="{Binding Path=Weight, Mode=OneWay}" />
 
-                        <Label Name="lbUnitPrice" Content="Unit Price" />
-                        <TextBox Name="txtUnitPrice" HorizontalAlignment="Stretch" Height="25" Text="{Binding Path=UnitPrice, Mode=OneWay}" />
+                    <Label Name="lbUnitPrice" Content="Unit Price" />
+                    <TextBox Name="txtUnitPrice" HorizontalAlignment="Stretch" Height="25" Text="{Binding Path=UnitPrice, Mode=OneWay}" />
 
-                        <Label Name="lbUnitStock" Content="Unit In Stock" />
-                        <TextBox Name="txtUnitStock" HorizontalAlignment="Stretch" Height="25" Text="{Binding Path=UnitInStock, Mode=OneWay}" />
+                    <Label Name="lbUnitStock" Content="Unit In Stock" />
+                    <TextBox Name="txtUnitStock" HorizontalAlignment="Stretch" Height="25" Text="{Binding Path=UnitInStock, Mode=OneWay}" />
+                </StackPanel>
 
-                    </StackPanel>
-                    <!--StackPanel for Button controls-->
-                    <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
-                        <Button x:Name="btnLoad" Margin="10" Width="80" Content="Load" Click="btnLoad_Click"/>
-                        <Button x:Name="btnInsert" Margin="10" Width="80" Content="Insert" Click="btnInsert_Click"/>
-                        <Button x:Name="btnUpdate" Margin="10" Width="80" Content="Update" Click="btnUpdate_Click"/>
-                        <Button x:Name="btnDelete" Margin="10" Width="80" Content="Delete" Click="btnDelete_Click"/>
-                        <Button x:Name="btnClear" Margin="10" Width="80" Content="Clear" Click="btnClear_Click"/>
-                    </StackPanel>
-                    <!-- ListView control-->
-                    <ListView Grid.Row="2" Name="lvProduct" Width="Auto" Height="Auto">
-                        <ListView.View>
-                            <GridView>
-                                <GridViewColumn Header="Product ID" Width="100" DisplayMemberBinding="{Binding Path=ProductId}"/>
-                                <GridViewColumn Header="ProductName" Width="200" DisplayMemberBinding="{Binding Path=ProductName}"/>
+                <!-- Search Section -->
+                <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
+                    <TextBox Name="txtSearch" Width="200" Height="25" />
+                    <ComboBox Name="cmbSearchType" Width="150" Height="25" Margin="10,0,10,0">
+                        <ComboBoxItem Content="Search by Product Name" />
+                        <ComboBoxItem Content="Search by Product Id" />
+                        <ComboBoxItem Content="Search by Unit Price" />
+                        <ComboBoxItem Content="Search by Unit In Stock" />
+                    </ComboBox>
+                    <Button Name="btnSearch" Width="80" Content="Search" Click="btnSearch_Click"/>
+                </StackPanel>
+
+                <!-- StackPanel for Button controls -->
+                <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center">
+                    <Button x:Name="btnLoad" Margin="10" Width="80" Content="Load" Click="btnLoad_Click"/>
+                    <Button x:Name="btnInsert" Margin="10" Width="80" Content="Insert" Click="btnInsert_Click"/>
+                    <Button x:Name="btnUpdate" Margin="10" Width="80" Content="Update" Click="btnUpdate_Click"/>
+                    <Button x:Name="btnDelete" Margin="10" Width="80" Content="Delete" Click="btnDelete_Click"/>
+                    <Button x:Name="btnClear" Margin="10" Width="80" Content="Clear" Click="btnClear_Click"/>
+                </StackPanel>
+
+                <!-- ListView control -->
+                <ListView Grid.Row="3" Name="lvProduct" Width="Auto" Height="Auto">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Product ID" Width="100" DisplayMemberBinding="{Binding Path=ProductId}"/>
+                            <GridViewColumn Header="ProductName" Width="200" DisplayMemberBinding="{Binding Path=ProductName}"/>
                             <GridViewColumn Header="Category" Width="100" DisplayMemberBinding="{Binding Path=CategoryId}"/>
                             <GridViewColumn Header="Weight" Width="200" DisplayMemberBinding="{Binding Path=Weight}"/>
-                                <GridViewColumn Header="Unit Price" Width="200" DisplayMemberBinding="{Binding Path=UnitPrice}"/>
-                                <GridViewColumn Header="Unit In Stock" Width="200" DisplayMemberBinding="{Binding Path=UnitInStock}"/>
-                            </GridView>
-                        </ListView.View>
-                    </ListView>
-                    <!-- Button control-->
-                    <Button Grid.Row="3" x:Name="btnClose" Margin="10" HorizontalAlignment="Center" VerticalAlignment="Bottom" Width="80" Content="Close" Click="btnClose_Click" />
-                </Grid>
-            </DockPanel>
-        </Grid>
+                            <GridViewColumn Header="Unit Price" Width="200" DisplayMemberBinding="{Binding Path=UnitPrice}"/>
+                            <GridViewColumn Header="Unit In Stock" Width="200" DisplayMemberBinding="{Binding Path=UnitInStock}"/>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+
+                <!-- Button control -->
+                <Button Grid.Row="4" x:Name="btnClose" Margin="10" HorizontalAlignment="Center" VerticalAlignment="Bottom" Width="80" Content="Close" Click="btnClose_Click" />
+            </Grid>
+        </DockPanel>
+    </Grid>
+
 </Window>

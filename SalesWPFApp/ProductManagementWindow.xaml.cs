@@ -156,5 +156,55 @@ namespace SalesWPFApp
             txtUnitStock.Clear();
             txtWeight.Clear();
         }
+
+        private void btnSearch_Click(object sender, RoutedEventArgs e)
+        {
+            string searchKeyword = txtSearch.Text.Trim();
+            string searchType = (cmbSearchType.SelectedItem as ComboBoxItem)?.Content.ToString();
+
+            var allProducts = _productRepository.GetAllProducts();
+
+            IEnumerable<Product> filteredProducts = null;
+
+            if (!string.IsNullOrEmpty(searchKeyword))
+            {
+                if (searchType == "Search by Product Name")
+                {
+                    filteredProducts = allProducts.Where(p => p.ProductName.Contains(searchKeyword, StringComparison.OrdinalIgnoreCase));
+                }
+                else if (searchType == "Search by Product Id")
+                {
+                    if (int.TryParse(searchKeyword, out int productId))
+                    {
+                        filteredProducts = allProducts.Where(p => p.ProductId == productId);
+                    }
+                }
+                else if (searchType == "Search by Unit Price")
+                {
+                    if (long.TryParse(searchKeyword, out long unitPrice))
+                    {
+                        filteredProducts = allProducts.Where(p => p.UnitPrice == unitPrice);
+                    }
+                }
+                else if (searchType == "Search by Unit In Stock")
+                {
+                    if (int.TryParse(searchKeyword, out int unitInStock))
+                    {
+                        filteredProducts = allProducts.Where(p => p.UnitInStock == unitInStock);
+                    }
+                }
+            }
+
+            if (filteredProducts != null && filteredProducts.Any())
+            {
+                lvProduct.ItemsSource = filteredProducts;
+            }
+            else
+            {
+                MessageBox.Show("No matching products found.", "Search Result");
+                lvProduct.ItemsSource = allProducts; 
+            }
+        }
+
     }
 }
